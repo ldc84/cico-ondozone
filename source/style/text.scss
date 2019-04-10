@@ -1,0 +1,35 @@
+@charset 'UTF-8';
+
+// title type
+.title-type-1 {
+  font-size: rem(24);
+  line-height: 1.35;
+}
+
+// text type
+.text-type-1 {
+  font-size: rem(16);
+  line-height: 1.9;
+  .title-type-1 + & {
+    margin-top:25px;
+  }
+}
+
+// tablet & mobile
+@include mediaQuery($deviceSmallMiddle){
+
+  // title type
+  .title-type-1 {
+    font-size: rem(16);
+  }
+
+  // text type
+  .text-type-1 {
+    font-size: rem(12);
+    line-height: 1.75;
+    .title-type-1 + & {
+      margin-top:15px;
+    }
+  }
+
+}
