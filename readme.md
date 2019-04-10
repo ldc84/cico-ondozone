@@ -1,4 +1,4 @@
-# plusminuszero static site builder  
+# 온도존 static site builder  
 
 gulp.js 기반의 task running으로 building
 
