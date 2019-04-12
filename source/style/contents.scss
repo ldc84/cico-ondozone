@@ -3,8 +3,11 @@
 .visual {
   position:relative;
   width:100%;
+  background-color:#000;
+  text-align:center;
   .mediaobject-ios-inline-video {
-    width:100%;
+    width:auto;
+    height:calc(100vh - 50px);
   }
   .hero-headline-elements {
     position:absolute;
@@ -15,7 +18,9 @@
     color:#fff;
     font-size:rem(96);
     font-weight:700;
-    text-align:center;
+    span {
+      text-shadow: 3px 5px 10px #333;
+    }
   }
 }
 

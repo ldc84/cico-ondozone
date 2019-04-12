@@ -273,7 +273,7 @@ gulp.task('copy:conf', function () {
 
 // image :: local, copy
 gulp.task('copy:image', function () {
-  return gulp.src(path.source.image + '/**/*.{jpg,png,gif,svg}')
+  return gulp.src(path.source.image + '/**/*.{jpg,png,gif,svg,mp4}')
     .pipe(gulp.dest(path.deploy + '/image'))
     .pipe(livereload());
 });
