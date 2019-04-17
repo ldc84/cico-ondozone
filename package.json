@@ -30,7 +30,9 @@
     "swiper": "^4.4.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV='development' gulp local",
+    "deploy": "NODE_ENV='production' gulp deploy"
   },
   "keywords": [
     "validator"
