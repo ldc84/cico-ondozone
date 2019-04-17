@@ -33,7 +33,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV='development' gulp local",
-    "help": "NODE_ENV='development' gulp help",
     "deploy": "NODE_ENV='production' gulp deploy"
   },
   "keywords": [
