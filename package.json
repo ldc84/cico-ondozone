@@ -20,6 +20,7 @@
     "gulp-livereload": "^4.0.0",
     "gulp-main-node-files": "^1.1.1",
     "gulp-npm-dist": "^1.0.1",
+    "gulp-preprocess": "^3.0.2",
     "gulp-remove-html-comments": "^1.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.1",
@@ -32,6 +33,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV='development' gulp local",
+    "help": "NODE_ENV='development' gulp help",
     "deploy": "NODE_ENV='production' gulp deploy"
   },
   "keywords": [

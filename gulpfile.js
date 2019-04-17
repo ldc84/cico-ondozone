@@ -43,8 +43,12 @@ var gulp = require('gulp'),
 
   // ftp
   ftp = require('gulp-ftp'),
-  
-  cachebust = require('gulp-cache-bust');
+
+  // cache
+  cachebust = require('gulp-cache-bust'),
+
+  // NODE_ENV
+  preprocess = require('gulp-preprocess');
 
 // 환경설정
 var path = {
@@ -60,6 +64,8 @@ var path = {
   },
   deploy: 'deploy'
 };
+
+var envNODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development' ;
 
 
 // 도움말
@@ -92,6 +98,7 @@ plusminuszero 사이트를 static하게 만들어냅니다.
     `;
 
   console.log(comment);
+  // console.log(process.env.NODE_ENV);
 });
 
 
@@ -294,9 +301,11 @@ gulp.task('imagemin', function () {
 gulp.task('html', function () {
   return gulp.src(path.source.html + '/**/*.html')
     .pipe(extender({
-      annotations: false,
-      verbose: false
+      annotations: true,
+      verbose: false,
+      root: path.source.template
     })) // default options
+    .pipe(preprocess({context: { ENV: envNODE_ENV, DEBUG: true}})) //To set environment variables in-line
     .pipe(removeHtmlComment())
     .pipe(cachebust({type: 'timestamp'})) // 캐시 삭제
     .pipe(gulp.dest(path.deploy))
