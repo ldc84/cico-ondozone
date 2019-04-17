@@ -65,7 +65,17 @@ var path = {
   deploy: 'deploy'
 };
 
-var envNODE_ENV = process.env.NODE_ENV === 'production' ? 'production' : 'development' ;
+gulp.task('env:dev', function() {
+  process.env.NODE_ENV = 'development';
+});
+gulp.task('env:pro', function() {
+  process.env.NODE_ENV = 'production';
+});
+
+function envNODE_ENV(){
+  var result = process.env.NODE_ENV === 'production' ? 'production' : 'development' ;
+  return result;
+}
 
 
 // 도움말
@@ -305,7 +315,7 @@ gulp.task('html', function () {
       verbose: false,
       root: path.source.template
     })) // default options
-    .pipe(preprocess({context: { ENV: envNODE_ENV, DEBUG: true}})) //To set environment variables in-line
+    .pipe(preprocess({context: { ENV: envNODE_ENV(), DEBUG: true}})) //To set environment variables in-line
     .pipe(removeHtmlComment())
     .pipe(cachebust({type: 'timestamp'})) // 캐시 삭제
     .pipe(gulp.dest(path.deploy))
@@ -329,12 +339,12 @@ gulp.task('release', function () {
 gulp.task('default', ['help']);
 
 gulp.task('local', function () {
-  runSequence('clean', 'copy:image', 'copy:fonts', 'convert:sass:sourcemap', 'copy:conf', 'html', ['copy:js', 'copy:node_modules'], ['connect', 'watch']);
+  runSequence('clean', 'env:dev', 'copy:image', 'copy:fonts', 'convert:sass:sourcemap', 'copy:conf', 'html', ['copy:js', 'copy:node_modules'], ['connect', 'watch']);
 });
 
 
 gulp.task('deploy', function () {
-  runSequence('clean', 'copy:image', 'copy:fonts', 'convert:sass', 'copy:conf', 'html', ['copy:js', 'copy:node_modules'], 'release');
+  runSequence('clean', 'env:pro', 'copy:image', 'copy:fonts', 'convert:sass', 'copy:conf', 'html', ['copy:js', 'copy:node_modules'], 'release');
 });
 
 // gulp.task('upload', function () {
